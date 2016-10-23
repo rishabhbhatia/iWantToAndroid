@@ -6,6 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.view.Display;
 
+import com.statiate.iwantto.models.GoalSelector;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -60,6 +63,28 @@ public class iWantUtils {
     {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dps * scale + 0.5f);
+    }
+
+    public static GoalSelector generateRandomGoalSelector()
+    {
+        GoalSelector goalSelector = new GoalSelector();
+        goalSelector.setGoalCount(generateRandomNumber(0,100));
+        goalSelector.setName(generateRandomString(6));
+        goalSelector.setImageUrl("https://unsplash.it/"+generateRandomNumber(550, 750)+"/"+generateRandomNumber(300,400)+"/?random");
+
+        return goalSelector;
+    }
+
+    public static ArrayList<GoalSelector> generateRandomGoalSelectors(int count)
+    {
+        ArrayList<GoalSelector> goalSelectors = new ArrayList<>();
+
+        for(int i=0; i<count; i++)
+        {
+            goalSelectors.add(generateRandomGoalSelector());
+        }
+
+        return goalSelectors;
     }
 
 }
