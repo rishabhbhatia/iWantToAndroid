@@ -1,6 +1,7 @@
 package com.statiate.iwantto;
 
 import android.os.Bundle;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +26,7 @@ public class GoalSelectorActivity extends AppCompatActivity {
     @BindView(R.id.ll_goal_selector_goal_count_holder)
     LinearLayout llGoalSelectorGoalCountHolder;
     @BindView(R.id.rl_goal_selector_main)
-    RelativeLayout rlGoalSelectorMain;
+    PercentRelativeLayout rlGoalSelectorMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

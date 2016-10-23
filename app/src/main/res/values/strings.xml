@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">iWantTo</string>
+
+    <!-- Goal Selector Screen -->
+    <string name="goal_selector_iwantto_label">I want to</string>
+    <string name="goal_selector_goals_label">Goals</string>
+    <string name="goal_selector_do_it">Do it</string>
 </resources>

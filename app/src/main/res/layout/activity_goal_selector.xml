@@ -1,45 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_goal_selector_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.statiate.iwantto.GoalSelectorActivity"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     >
 
-    <LinearLayout
-        android:id="@+id/ll_goal_selector_goal_count_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_goal_selector_bg"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_heightPercent="100%"
+        app:layout_widthPercent="100%"
+        >
+
+        <ImageView
+            android:id="@+id/iv_goal_selector"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:alpha="0.2"
+            />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_goal_selector_header"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="100%"
         android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/iv_goal_selector_header_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_dialer"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_goal_selector_header_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_dialer"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_goal_selector_recycler"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:orientation="vertical"
+        android:layout_below="@+id/rl_goal_selector_header"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:background="@drawable/tv_circle_bg"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         >
 
         <TextView
-            android:id="@+id/tv_goal_selector_goal_count"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="25"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:gravity="center_vertical|center_horizontal"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/tv_goal_selector_goal_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Goals"
-            android:textSize="12sp"
+            android:text="@string/goal_selector_iwantto_label"
             android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:gravity="center_vertical|center_horizontal"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            />
+
+        <com.malinskiy.superrecyclerview.SuperRecyclerView
+            android:id="@+id/srv_goal_selector_goals"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mainLayoutId="@layout/layout_recyclerview_verticalscroll"
+            app:recyclerClipToPadding="false"
+            app:recyclerPadding="16dp"
+            app:scrollbarStyle="insideInset"/>
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_goal_selector_count_main"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="100%"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_below="@+id/ll_goal_selector_recycler"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_goal_selector_goal_count_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/tv_circle_bg"
+            >
+
+            <TextView
+                android:id="@+id/tv_goal_selector_goal_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/tv_goal_selector_goal_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goal_selector_goals_label"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_goal_selector_footer"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_heightPercent="30%"
+        app:layout_widthPercent="75%"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ll_goal_selector_count_main"
+        >
+
+        <Button
+            android:id="@+id/bt_goal_selector_do_it"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/goal_selector_do_it_button"
+            android:text="@string/goal_selector_do_it"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            />
+
+
+
+    </LinearLayout>
+
+</android.support.percent.PercentRelativeLayout>

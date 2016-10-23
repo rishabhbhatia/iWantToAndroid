@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#37474F</color>
 
+    <!-- Goal Selector -->
+    <color name="goal_selector_do_it_button">#FFEB3B</color>
+
 </resources>
