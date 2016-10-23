@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.nineoldandroids.animation.IntEvaluator;
@@ -102,10 +106,18 @@ public class GoalSelectorActivity extends AppCompatActivity {
             public void OnPageChanged(int i, int currentPos) {
                 GoalSelector goalSelector = goalSelectorAdapter.getGoal(currentPos);
                 updateGoalSelectorUI(goalSelector);
+                showPageChangeAnimation();
             }
         });
 
         updateGoalSelectorUI(goalSelectorAdapter.getGoal(0));
+    }
+
+    private void showPageChangeAnimation() {
+
+        YoYo.with(Techniques.Pulse)
+                .duration(300)
+                .playOn(findViewById(R.id.rl_goal_selector_main));
     }
 
     private void animateGoalCounts(int endNumber) {
@@ -123,13 +135,15 @@ public class GoalSelectorActivity extends AppCompatActivity {
                 iWantUtils.generateRandomNumber(50,250)).start();*/
 
         ValueAnimator anim = ValueAnimator.ofInt(civCount.getMeasuredWidth(),
-                iWantUtils.generateRandomNumber(100, 450));
+                iWantUtils.generateRandomNumber(250, 400));
+        anim.setInterpolator(new AnticipateOvershootInterpolator());
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 int val = (Integer) valueAnimator.getAnimatedValue();
                 ViewGroup.LayoutParams layoutParams = civCount.getLayoutParams();
                 layoutParams.width = val;
+                layoutParams.height = val;
                 civCount.setLayoutParams(layoutParams);
             }
         });

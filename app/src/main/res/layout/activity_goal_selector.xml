@@ -129,6 +129,8 @@
                 android:id="@+id/civ_count"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
+                android:minHeight="96dp"
+                android:minWidth="96dp"
                 app:civ_fill_color="@android:color/white"
                 android:src="@android:color/transparent"
                 android:layout_centerInParent="true"
