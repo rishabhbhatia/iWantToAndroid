@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_goal_selector"
+    android:id="@+id/rl_goal_selector_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.statiate.iwantto.GoalSelectorActivity">
+    tools:context="com.statiate.iwantto.GoalSelectorActivity"
+    android:background="@color/colorPrimary"
+    >
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_goal_selector_goal_count_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@drawable/tv_circle_bg"
+        android:layout_centerInParent="true"
+        >
+
+        <TextView
+            android:id="@+id/tv_goal_selector_goal_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_goal_selector_goal_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goals"
+            android:textSize="12sp"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
 </RelativeLayout>
