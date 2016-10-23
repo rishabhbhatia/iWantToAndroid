@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.models.GoalSelector;
+import com.statiate.iwantto.ui.activities.GoalSelectorActivity;
 import com.statiate.iwantto.utils.iWantConstants;
 
 import java.util.ArrayList;
@@ -41,12 +42,15 @@ public class GoalSelectorAdapter extends RecyclerView.Adapter<GoalSelectorAdapte
 
         GoalSelector goalSelector = goalSelectors.get(position);
         holder.tvGoalSelectorLabel.setText(goalSelector.getName());
-        Log.d(iWantConstants.TAG, "Pos: "+position+" & goal is: "+goalSelector.getName());
     }
 
     @Override
     public int getItemCount() {
         return goalSelectors.size();
+    }
+
+    public GoalSelector getGoal(int position) {
+        return goalSelectors.get(position);
     }
 
     class GoalSelectorHolder extends RecyclerView.ViewHolder {

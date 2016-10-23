@@ -12,11 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.adapter.GoalSelectorAdapter;
 import com.statiate.iwantto.animators.iWantAnimators;
+import com.statiate.iwantto.models.GoalSelector;
 import com.statiate.iwantto.utils.iWantConstants;
 import com.statiate.iwantto.utils.iWantUtils;
 
@@ -79,6 +81,15 @@ public class GoalSelectorActivity extends AppCompatActivity {
         rvpGoalSelectorGoals.setLayoutManager(linearLayoutManager);
         rvpGoalSelectorGoals.setAdapter(goalSelectorAdapter);
 
+        rvpGoalSelectorGoals.addOnPageChangedListener(new RecyclerViewPager.OnPageChangedListener() {
+            @Override
+            public void OnPageChanged(int i, int currentPos) {
+                GoalSelector goalSelector = goalSelectorAdapter.getGoal(currentPos);
+                updateGoalSelectorUI(goalSelector);
+            }
+        });
+
+        updateGoalSelectorUI(goalSelectorAdapter.getGoal(0));
     }
 
     private void animateGoalCounts() {
@@ -86,6 +97,14 @@ public class GoalSelectorActivity extends AppCompatActivity {
         Log.d(iWantConstants.TAG, "animating to " + endNumber);
         iWantAnimators.animateCountOnTextView(tvGoalSelectorGoalCount, Integer.
                 parseInt(tvGoalSelectorGoalCount.getText().toString()), endNumber, 1000);
+    }
+
+    public void updateGoalSelectorUI(GoalSelector goalSelector)
+    {
+        Glide.with(GoalSelectorActivity.this).load(goalSelector.getImageUrl()).asBitmap().fitCenter().into(ivGoalSelector);
+        tvGoalSelectorGoalCount.setText(goalSelector.getGoalCount()+"");
+        Log.d(iWantConstants.TAG, "hello hello beauti "+goalSelector.getGoalCount()+ " & image is "+goalSelector.getImageUrl());
+
     }
 
     @OnClick({R.id.ll_goal_selector_goal_count_holder, R.id.rl_goal_selector_main, R.id.bt_goal_selector_do_it})
