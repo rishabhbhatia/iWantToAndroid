@@ -5,9 +5,13 @@ import android.support.percent.PercentRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.animators.iWantAnimators;
 import com.statiate.iwantto.utils.iWantConstants;
@@ -27,6 +31,26 @@ public class GoalSelectorActivity extends AppCompatActivity {
     LinearLayout llGoalSelectorGoalCountHolder;
     @BindView(R.id.rl_goal_selector_main)
     PercentRelativeLayout rlGoalSelectorMain;
+    @BindView(R.id.iv_goal_selector)
+    ImageView ivGoalSelector;
+    @BindView(R.id.rl_goal_selector_bg)
+    RelativeLayout rlGoalSelectorBg;
+    @BindView(R.id.iv_goal_selector_header_settings)
+    ImageView ivGoalSelectorHeaderSettings;
+    @BindView(R.id.iv_goal_selector_header_add)
+    ImageView ivGoalSelectorHeaderAdd;
+    @BindView(R.id.rl_goal_selector_header)
+    RelativeLayout rlGoalSelectorHeader;
+    @BindView(R.id.srv_goal_selector_goals)
+    SuperRecyclerView srvGoalSelectorGoals;
+    @BindView(R.id.ll_goal_selector_recycler)
+    LinearLayout llGoalSelectorRecycler;
+    @BindView(R.id.ll_goal_selector_count_main)
+    LinearLayout llGoalSelectorCountMain;
+    @BindView(R.id.bt_goal_selector_do_it)
+    Button btGoalSelectorDoIt;
+    @BindView(R.id.ll_goal_selector_footer)
+    LinearLayout llGoalSelectorFooter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +58,26 @@ public class GoalSelectorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goal_selector);
         ButterKnife.bind(this);
 
-        animateGoalCounts();
+//        animateGoalCounts();
     }
 
-    private void animateGoalCounts()
-    {
+    private void animateGoalCounts() {
         int endNumber = iWantUtils.generateRandomNumber(0, 100);
-        Log.d(iWantConstants.TAG, "animating to "+endNumber);
+        Log.d(iWantConstants.TAG, "animating to " + endNumber);
         iWantAnimators.animateCountOnTextView(tvGoalSelectorGoalCount, Integer.
                 parseInt(tvGoalSelectorGoalCount.getText().toString()), endNumber, 1000);
     }
 
-    @OnClick({R.id.ll_goal_selector_goal_count_holder, R.id.rl_goal_selector_main})
+    @OnClick({R.id.ll_goal_selector_goal_count_holder, R.id.rl_goal_selector_main, R.id.bt_goal_selector_do_it})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_goal_selector_goal_count_holder:
                 break;
             case R.id.rl_goal_selector_main:
                 break;
+            case R.id.bt_goal_selector_do_it:
+                break;
         }
     }
+
 }
