@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.adapter.GoalSelectorAdapter;
@@ -54,6 +54,8 @@ public class GoalSelectorActivity extends AppCompatActivity {
     Button btGoalSelectorDoIt;
     @BindView(R.id.ll_goal_selector_footer)
     LinearLayout llGoalSelectorFooter;
+    @BindView(R.id.rvp_goal_selector_goals)
+    RecyclerViewPager rvpGoalSelectorGoals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +68,16 @@ public class GoalSelectorActivity extends AppCompatActivity {
         setupGoalSelectorRecyclerView();
     }
 
-    private void setupGoalSelectorRecyclerView()
-    {
+    private void setupGoalSelectorRecyclerView() {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GoalSelectorActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        srvGoalSelectorGoals.setLayoutManager(linearLayoutManager);
-
         final GoalSelectorAdapter goalSelectorAdapter = new GoalSelectorAdapter(GoalSelectorActivity.this, iWantUtils.generateRandomGoalSelectors(40));
-        srvGoalSelectorGoals.setAdapter(goalSelectorAdapter);
+
+
+//        srvGoalSelectorGoals.setLayoutManager(linearLayoutManager);
+//        srvGoalSelectorGoals.setAdapter(goalSelectorAdapter);
+
+        rvpGoalSelectorGoals.setLayoutManager(linearLayoutManager);
+        rvpGoalSelectorGoals.setAdapter(goalSelectorAdapter);
 
     }
 

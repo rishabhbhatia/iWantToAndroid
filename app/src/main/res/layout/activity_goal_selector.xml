@@ -92,7 +92,18 @@
             android:layout_height="match_parent"
             app:recyclerClipToPadding="false"
             app:recyclerPadding="16dp"
+            android:visibility="gone"
             app:scrollbarStyle="insideInset"/>
+
+        <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+            android:id="@+id/rvp_goal_selector_goals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:rvp_triggerOffset="0.1"
+            app:rvp_singlePageFling="true"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
