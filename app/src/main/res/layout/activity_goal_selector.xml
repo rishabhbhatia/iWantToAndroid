@@ -118,15 +118,21 @@
         android:layout_below="@+id/ll_goal_selector_recycler"
         >
 
-        <LinearLayout
-            android:id="@+id/ll_goal_selector_goal_count_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:background="@drawable/tv_circle_bg"
+        <RelativeLayout
+            android:id="@+id/rl_goal_selector_goal_count_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/civ_count"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                app:civ_fill_color="@android:color/white"
+                android:src="@android:color/transparent"
+                android:layout_centerInParent="true"
+                />
 
             <TextView
                 android:id="@+id/tv_goal_selector_goal_count"
@@ -134,22 +140,31 @@
                 android:layout_height="wrap_content"
                 android:text="25"
                 android:textSize="18sp"
+                android:layout_centerHorizontal="true"
                 android:textColor="@android:color/black"
-                android:gravity="center_vertical|center_horizontal"
+                android:layout_above="@+id/space_count"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/space_count"
+                />
 
             <TextView
                 android:id="@+id/tv_goal_selector_goal_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/goal_selector_goals_label"
+                android:layout_below="@+id/space_count"
+                android:layout_centerHorizontal="true"
                 android:textSize="12sp"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"
-                android:gravity="center_vertical|center_horizontal"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
