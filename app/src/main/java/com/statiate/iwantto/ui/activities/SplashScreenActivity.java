@@ -33,6 +33,7 @@ public class SplashScreenActivity extends iWantToActivity {
     @BindView(R.id.tiles_frame_splash)
     TilesFrameLayout tilesFrameLayout;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,5 +61,17 @@ public class SplashScreenActivity extends iWantToActivity {
         Intent intent = new Intent(SplashScreenActivity.this, GoalSelectorActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        tilesFrameLayout.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tilesFrameLayout.onResume();
     }
 }

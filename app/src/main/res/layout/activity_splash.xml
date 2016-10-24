@@ -5,8 +5,8 @@
     android:id="@+id/tiles_frame_splash"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    app:sw_animationDuration="1500"
-    app:sw_numberOfTilesX="35"
+    app:sw_animationDuration="1000"
+    app:sw_numberOfTilesX="50"
     android:background="@color/colorPrimaryDark">
 
     <FrameLayout
