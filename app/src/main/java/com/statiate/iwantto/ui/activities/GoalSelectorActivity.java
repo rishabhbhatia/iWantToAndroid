@@ -1,5 +1,6 @@
 package com.statiate.iwantto.ui.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import com.statiate.iwantto.adapter.GoalSelectorAdapter;
 import com.statiate.iwantto.animators.iWantAnimators;
 import com.statiate.iwantto.models.GoalSelector;
 import com.statiate.iwantto.utils.iWantUtils;
+import com.statiate.iwantto.waveview.WaveHelper;
 import com.statiate.iwantto.waveview.WaveView;
 
 import butterknife.BindView;
@@ -73,6 +75,12 @@ public class GoalSelectorActivity extends AppCompatActivity {
     @BindView(R.id.space_count)
     Space spaceCount;
 
+    private WaveHelper mWaveHelper;
+
+    private int mBorderColor = Color.parseColor("#44FFFFFF");
+    private int mBorderWidth = 10;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +88,10 @@ public class GoalSelectorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goal_selector);
         ButterKnife.bind(this);
 
-//        animateGoalCounts();
+        waveGoalSelector.setBorder(mBorderWidth, mBorderColor);
+        waveGoalSelector.setShapeType(WaveView.ShapeType.CIRCLE);
+        mWaveHelper = new WaveHelper(waveGoalSelector);
+        mWaveHelper.start();
 
         setupGoalSelectorRecyclerView();
     }
@@ -109,7 +120,6 @@ public class GoalSelectorActivity extends AppCompatActivity {
             public void OnPageChanged(int i, int currentPos) {
                 GoalSelector goalSelector = goalSelectorAdapter.getGoal(currentPos);
                 updateGoalSelectorUI(goalSelector);
-                showPageChangeAnimation();
             }
         });
 
@@ -120,7 +130,7 @@ public class GoalSelectorActivity extends AppCompatActivity {
 
         YoYo.with(Techniques.Pulse)
                 .duration(300)
-                .playOn(findViewById(R.id.rl_goal_selector_main));
+                .playOn(findViewById(R.id.civ_count));
     }
 
     private void animateGoalCounts(int endNumber) {
@@ -128,15 +138,16 @@ public class GoalSelectorActivity extends AppCompatActivity {
                 parseInt(tvGoalSelectorGoalCount.getText().toString()), endNumber, 1000);
     }
 
-    public void updateGoalSelectorUI(GoalSelector goalSelector) {
-
+    public void updateGoalSelectorUI(GoalSelector goalSelector)
+    {
+        showPageChangeAnimation();
         animateGoalCounts(goalSelector.getGoalCount());
         Glide.with(GoalSelectorActivity.this).load(goalSelector.getImageUrl()).asBitmap().fitCenter().into(ivGoalSelector);
+        animateCountCircle();
+    }
 
-//        BounceInterpolator bounceInterpolator = new BounceInterpolator();
-      /*  ValueAnimator.ofObject(new WidthEvaluator(llGoalSelectorCountMain), llGoalSelectorCountMain.getWidth(),
-                iWantUtils.generateRandomNumber(50,250)).start();*/
-
+    private void animateCountCircle()
+    {
         ValueAnimator anim = ValueAnimator.ofInt(civCount.getMeasuredWidth(),
                 iWantUtils.generateRandomNumber(250, 400));
         anim.setInterpolator(new AnticipateOvershootInterpolator());
