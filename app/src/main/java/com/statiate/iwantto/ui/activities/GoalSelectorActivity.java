@@ -26,6 +26,7 @@ import com.nineoldandroids.animation.ValueAnimator;
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.adapter.GoalSelectorAdapter;
 import com.statiate.iwantto.animators.iWantAnimators;
+import com.statiate.iwantto.base.iWantToActivity;
 import com.statiate.iwantto.models.GoalSelector;
 import com.statiate.iwantto.utils.iWantUtils;
 import com.statiate.iwantto.waveview.WaveHelper;
@@ -36,7 +37,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class GoalSelectorActivity extends AppCompatActivity {
+public class GoalSelectorActivity extends iWantToActivity {
 
     @BindView(R.id.tv_goal_selector_goal_count)
     TextView tvGoalSelectorGoalCount;
