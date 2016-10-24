@@ -81,6 +81,10 @@ public class GoalSelectorActivity extends AppCompatActivity {
     private int mBorderWidth = 10;
 
 
+    //TODO
+    //vary animated wave size & speed with count
+    //vary count size animation with count
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
