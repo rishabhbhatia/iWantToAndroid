@@ -31,7 +31,11 @@
 
     </RelativeLayout>
 
-
+    <com.statiate.iwantto.waveview.WaveView
+        android:id="@+id/wave_goal_selector"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"/>
 
     <RelativeLayout
         android:id="@+id/rl_goal_selector_header"

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +27,7 @@ import com.statiate.iwantto.adapter.GoalSelectorAdapter;
 import com.statiate.iwantto.animators.iWantAnimators;
 import com.statiate.iwantto.models.GoalSelector;
 import com.statiate.iwantto.utils.iWantUtils;
+import com.statiate.iwantto.waveview.WaveView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +68,10 @@ public class GoalSelectorActivity extends AppCompatActivity {
     RecyclerViewPager rvpGoalSelectorGoals;
     @BindView(R.id.civ_count)
     CircleImageView civCount;
+    @BindView(R.id.wave_goal_selector)
+    WaveView waveGoalSelector;
+    @BindView(R.id.space_count)
+    Space spaceCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
