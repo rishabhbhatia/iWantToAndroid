@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<app:com.yalantis.starwars.TilesFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:scrolling_image_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    android:id="@+id/tiles_frame_splash"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    app:sw_animationDuration="1500"
+    app:sw_numberOfTilesX="35"
     android:background="@color/colorPrimaryDark">
 
     <FrameLayout
@@ -38,4 +40,4 @@
 
     </FrameLayout>
 
-</LinearLayout>
+</app:com.yalantis.starwars.TilesFrameLayout>
