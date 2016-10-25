@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.statiate.iwantto.adapter.GoalSelectorAdapter;
 import com.statiate.iwantto.animators.iWantAnimators;
 import com.statiate.iwantto.base.iWantToActivity;
 import com.statiate.iwantto.models.GoalSelector;
+import com.statiate.iwantto.utils.iWantConstants;
 import com.statiate.iwantto.utils.iWantUtils;
 import com.statiate.iwantto.waveview.WaveHelper;
 import com.statiate.iwantto.waveview.WaveView;
@@ -84,7 +86,7 @@ public class GoalSelectorActivity extends iWantToActivity {
     private int mBorderWidth = 10;
 
     private float x1,x2;
-    static final int MIN_DISTANCE = 300;
+    static final int MIN_DISTANCE = 200;
 
     private ArrayList<GoalSelector> goalSelectors;
 
@@ -126,6 +128,12 @@ public class GoalSelectorActivity extends iWantToActivity {
                             if(rvpGoalSelectorGoals.getCurrentPosition() != goalSelectors.size()-1)
                             {
                                 rvpGoalSelectorGoals.smoothScrollToPosition(rvpGoalSelectorGoals.getCurrentPosition()+1);
+                            }
+                        }else if(Math.abs(deltaX) > MIN_DISTANCE)
+                        {
+                            if(rvpGoalSelectorGoals.getCurrentPosition() != 0)
+                            {
+                                rvpGoalSelectorGoals.smoothScrollToPosition(rvpGoalSelectorGoals.getCurrentPosition()-1);
                             }
                         }
                         break;
