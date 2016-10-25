@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.q42.android.scrollingimageview.ScrollingImageView;
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.base.iWantToActivity;
+import com.statiate.iwantto.utils.iWantConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +44,6 @@ public class SplashScreenActivity extends iWantToActivity {
 
         sivSplashBackground.start();
         sivSplashForeground.start();
-
-        setupSplashHandler();
     }
 
     private void setupSplashHandler()
