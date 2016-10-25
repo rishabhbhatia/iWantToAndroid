@@ -30,6 +30,8 @@ public class SplashScreenActivity extends iWantToActivity {
     @BindView(R.id.rl_splash_scroll_animation_holder)
     RelativeLayout relativeSplashScrollAnimationHolder;
 
+    private Handler handler;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +43,13 @@ public class SplashScreenActivity extends iWantToActivity {
         sivSplashBackground.start();
         sivSplashForeground.start();
 
-        new Handler().postDelayed(new Runnable() {
+        setupSplashHandler();
+    }
+
+    private void setupSplashHandler()
+    {
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 startGoalSelectorScreen();
@@ -49,28 +57,47 @@ public class SplashScreenActivity extends iWantToActivity {
         }, 5000);
     }
 
-    private void startGoalSelectorScreen() {
+    private void startGoalSelectorScreen()
+    {
         Intent intent = new Intent(SplashScreenActivity.this, GoalSelectorActivity.class);
         startActivity(intent);
         finish();
     }
 
 
-    private void hideStatusBar() {
+    private void hideStatusBar()
+    {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    public void showStatusBar() {
+    public void showStatusBar()
+    {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override
     protected void onPause() {
+        if(handler != null)
+        {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        setupSplashHandler();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(handler != null)
+        {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
+        super.onDestroy();
     }
 }
