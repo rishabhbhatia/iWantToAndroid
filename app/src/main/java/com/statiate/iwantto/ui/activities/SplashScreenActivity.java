@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.widget.FrameLayout;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.q42.android.scrollingimageview.ScrollingImageView;
 import com.statiate.iwantto.R;
 import com.statiate.iwantto.base.iWantToActivity;
-import com.yalantis.starwars.TilesFrameLayout;
-import com.yalantis.starwars.interfaces.TilesFrameLayoutListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,15 +27,14 @@ public class SplashScreenActivity extends iWantToActivity {
     ScrollingImageView sivSplashForeground;
     @BindView(R.id.iv_splash_anim_character)
     ImageView ivSplashAnimCharacter;
-    @BindView(R.id.frame_splash_scroll_animation_holder)
-    FrameLayout frameSplashScrollAnimationHolder;
-    @BindView(R.id.tiles_frame_splash)
-    TilesFrameLayout tilesFrameLayout;
+    @BindView(R.id.rl_splash_scroll_animation_holder)
+    RelativeLayout relativeSplashScrollAnimationHolder;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        hideStatusBar();
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
@@ -46,13 +44,7 @@ public class SplashScreenActivity extends iWantToActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                tilesFrameLayout.startAnimation();
-                tilesFrameLayout.setOnAnimationFinishedListener(new TilesFrameLayoutListener() {
-                    @Override
-                    public void onAnimationFinished() {
-                        startGoalSelectorScreen();
-                    }
-                });
+                startGoalSelectorScreen();
             }
         }, 5000);
     }
@@ -63,15 +55,22 @@ public class SplashScreenActivity extends iWantToActivity {
         finish();
     }
 
+
+    private void hideStatusBar() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    public void showStatusBar() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
-        tilesFrameLayout.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        tilesFrameLayout.onResume();
     }
 }
