@@ -3,8 +3,8 @@ package com.statiate.iwantto.ui.activities;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -31,6 +31,8 @@ import com.statiate.iwantto.models.GoalSelector;
 import com.statiate.iwantto.utils.iWantUtils;
 import com.statiate.iwantto.waveview.WaveHelper;
 import com.statiate.iwantto.waveview.WaveView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,6 +83,11 @@ public class GoalSelectorActivity extends iWantToActivity {
     private int mBorderColor = Color.parseColor("#44FFFFFF");
     private int mBorderWidth = 10;
 
+    private float x1,x2;
+    static final int MIN_DISTANCE = 300;
+
+    private ArrayList<GoalSelector> goalSelectors;
+
 
     //TODO
     //vary animated wave size & speed with count
@@ -99,6 +106,33 @@ public class GoalSelectorActivity extends iWantToActivity {
         mWaveHelper.start();
 
         setupGoalSelectorRecyclerView();
+        addSwipeListener();
+    }
+
+    private void addSwipeListener() {
+        rlGoalSelectorMain.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        x1 = event.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x2 = event.getX();
+                        float deltaX = x1 - x2;
+                        if (deltaX > MIN_DISTANCE)
+                        {
+                            if(rvpGoalSelectorGoals.getCurrentPosition() != goalSelectors.size()-1)
+                            {
+                                rvpGoalSelectorGoals.smoothScrollToPosition(rvpGoalSelectorGoals.getCurrentPosition()+1);
+                            }
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     private void hideStatusBar() {
@@ -109,9 +143,12 @@ public class GoalSelectorActivity extends iWantToActivity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    private void setupGoalSelectorRecyclerView() {
+    private void setupGoalSelectorRecyclerView()
+    {
+        goalSelectors = iWantUtils.generateRandomGoalSelectors(40);
+
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GoalSelectorActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        final GoalSelectorAdapter goalSelectorAdapter = new GoalSelectorAdapter(GoalSelectorActivity.this, iWantUtils.generateRandomGoalSelectors(40));
+        final GoalSelectorAdapter goalSelectorAdapter = new GoalSelectorAdapter(GoalSelectorActivity.this, goalSelectors);
 
 
 //        srvGoalSelectorGoals.setLayoutManager(linearLayoutManager);
